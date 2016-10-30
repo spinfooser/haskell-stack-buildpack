@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -eo pipefail
+
+BUILDDIR=$1
+CACHEDIR=$2
+CABALCACHE=$CACHEDIR/cabalcache
+BINDIR=$CACHEDIR/bin
+export PATH=$PATH:$BINDIR
+
+mkdir -p $HOME/.cabal
+mkdir -p $CABALCACHE
+mkdir -p $BINDIR
+
+pushd $CACHEDIR
+
+echo "Downloading Stack Tool"
+wget -qO- https://get.haskellstack.org/ | sh
+stack setup
+
+echo "Haskell compiler completed"
+popd
+
+pushd $BUILDDIR
+stack build
+popd

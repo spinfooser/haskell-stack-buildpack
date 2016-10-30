@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd $1
+
+if test -f stack.yml
+then echo "New fangled haskell stack, not yet supported" ; exit 0
+fi
+
+exit 1
+
