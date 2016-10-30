@@ -15,11 +15,11 @@ mkdir -p $BINDIR
 pushd $CACHEDIR
 
 echo "Downloading Stack Tool"
-apt-get install g++ gcc libc6-dev libffi-dev libgmp-dev make xz-utils zlib1g-dev git gnupg
-
 wget -qO- -O stack.tar.gz https://www.stackage.org/stack/linux-x86_64
 tar xf stack.tar.gz
 pushd stack*linux-x86_64
+
+apt-get install libgmp-dev
 stack setup
 
 echo "Haskell compiler completed"
