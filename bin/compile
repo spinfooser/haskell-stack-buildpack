@@ -9,6 +9,7 @@ export PATH=$PATH:$BINDIR
 
 mkdir -p $BINDIR
 
+
 pushd $CACHEDIR
 
 echo "Downloading Stack Tool"
@@ -18,20 +19,30 @@ mv stack*linux-x86_64/stack $BINDIR
 
 #apt-get install libgmp-dev
 echo "Stack setup completed"
+
 popd
+
+
 echo "Using stack.yml file"
-ls $BUILDDIR
 echo "======================================"
-cat $BUILDDIR/stack.yml
+cat stack.yml
 echo "======================================"
+
+
 pushd $CACHEDIR
+
 echo "Build Haskell compiler started"
 stack setup --stack-setup-yaml $BUILDDIR/stack.yml
 rm ~/.stack/programs/**/*.tar.bz2
 echo "Build Haskell compiler completed"
 
+popd
+
+
 pushd $BUILDDIR
+
 echo "App build started"
 stack build
 echo "App build completed"
+
 popd
