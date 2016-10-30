@@ -17,10 +17,7 @@ pushd $CACHEDIR
 echo "Downloading Stack Tool"
 wget -qO- -O stack.tar.gz https://www.stackage.org/stack/linux-x86_64
 tar xf stack.tar.gz
-
-pushd $BINDIR
-mv stack*linux-x86_64/* .
-popd 
+mv stack*linux-x86_64/stack $BINDIR
 
 #apt-get install libgmp-dev
 echo "Stack setup completed"
