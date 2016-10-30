@@ -4,21 +4,26 @@ set -eo pipefail
 
 BUILDDIR=$1
 CACHEDIR=$2
-CABALCACHE=$CACHEDIR/cabalcache
+STACKCACHE=$CACHEDIR/stackcache
 BINDIR=$CACHEDIR/bin
-export PATH=$PATH:$BINDIR
+export PATH=$PATH:$BINDIR:/home/vcap/.local/bin
 
 mkdir -p $HOME/.cabal
-mkdir -p $CABALCACHE
+mkdir -p $STACKCACHE
 mkdir -p $BINDIR
 
 pushd $CACHEDIR
 
 echo "Downloading Stack Tool"
-wget -qO- https://get.haskellstack.org/ | sh
+sudo apt-get install g++ gcc libc6-dev libffi-dev libgmp-dev make xz-utils zlib1g-dev git gnupg
+
+wget -qO- -O stack.tar.gz https://www.stackage.org/stack/linux-x86_64
+tar xf stack.tar.gz
+pushd stack*linux-x86_64
 stack setup
 
 echo "Haskell compiler completed"
+popd
 popd
 
 pushd $BUILDDIR
