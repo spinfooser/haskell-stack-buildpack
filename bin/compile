@@ -24,10 +24,10 @@ echo "Stack setup completed"
 
 pushd $BUILDDIR
 echo "Build Haskell compiler started"
-stack setup
+stack setup --ghc-bindist http://downloads.haskell.org/~ghc/8.0.1/ghc-8.0.1-x86_64-deb8-linux.tar.xz
 echo "Build Haskell compiler completed"
-echo "App build started"
 
+echo "App build started"
 stack build
 echo "App build completed"
 popd
