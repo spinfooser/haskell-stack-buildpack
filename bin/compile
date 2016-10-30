@@ -17,12 +17,11 @@ wget -qO- -O stack.tar.gz https://www.stackage.org/stack/linux-x86_64
 tar xf stack.tar.gz
 mv stack*linux-x86_64/stack $BINDIR
 
-#apt-get install libgmp-dev
 echo "Stack setup completed"
 
-echo "Using stack.yml file"
-echo "======================================"
-cat $BUILDDIR/stack.yaml
+echo "Using stack.yml file" &&
+echo "======================================" &&
+cat $BUILDDIR/stack.yaml &&
 echo "======================================"
 
 pushd $BUILDDIR
