@@ -25,14 +25,14 @@ popd
 
 echo "Using stack.yml file"
 echo "======================================"
-cat stack.yml
+cat /tmp/stack.yml
 echo "======================================"
 
 
 pushd $CACHEDIR
 
 echo "Build Haskell compiler started"
-stack setup --stack-setup-yaml $BUILDDIR/stack.yml
+stack setup --stack-setup-yaml /tmp/stack.yml
 rm ~/.stack/programs/**/*.tar.bz2
 echo "Build Haskell compiler completed"
 
