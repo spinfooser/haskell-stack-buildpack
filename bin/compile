@@ -22,10 +22,12 @@ echo "Stack setup completed"
 
 popd
 
-
+ls -al $BUILDDIR
+echo $PWD
 echo "Using stack.yml file"
+ls -al
 echo "======================================"
-cat /tmp/stack.yml
+cat $BUILDDIR/stack.yml
 echo "======================================"
 
 
