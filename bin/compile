@@ -6,7 +6,7 @@ BUILDDIR=$1
 CACHEDIR=$2
 STACKCACHE=$CACHEDIR/stackcache
 BINDIR=$CACHEDIR/bin
-export PATH=$PATH:$BINDIR:/home/vcap/.local/bin
+export PATH=$PATH:$BINDIR
 
 mkdir -p $HOME/.cabal
 mkdir -p $STACKCACHE
@@ -17,15 +17,20 @@ pushd $CACHEDIR
 echo "Downloading Stack Tool"
 wget -qO- -O stack.tar.gz https://www.stackage.org/stack/linux-x86_64
 tar xf stack.tar.gz
-pushd stack*linux-x86_64
 
-apt-get install libgmp-dev
-stack setup
+pushd $BINDIR
+mv stack*linux-x86_64/* .
+popd 
 
-echo "Haskell compiler completed"
-popd
-popd
+#apt-get install libgmp-dev
+echo "Stack setup completed"
 
 pushd $BUILDDIR
+echo "Build Haskell compiler started"
+stack setup
+echo "Build Haskell compiler completed"
+echo "App build started"
+
 stack build
+echo "App build completed"
 popd
