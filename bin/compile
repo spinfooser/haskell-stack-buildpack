@@ -20,21 +20,13 @@ mv stack*linux-x86_64/stack $BINDIR
 #apt-get install libgmp-dev
 echo "Stack setup completed"
 
-popd
-
-ls -al $BUILDDIR
-echo $PWD
 echo "Using stack.yml file"
-ls -al
 echo "======================================"
-cat $BUILDDIR/stack.yml
+cat $BUILDDIR/stack.yaml
 echo "======================================"
-
-
-pushd $CACHEDIR
 
 echo "Build Haskell compiler started"
-stack setup --stack-setup-yaml /tmp/stack.yml
+stack setup --stack-setup-yaml $BUILDDIR/stack.yaml
 rm ~/.stack/programs/**/*.tar.bz2
 echo "Build Haskell compiler completed"
 
