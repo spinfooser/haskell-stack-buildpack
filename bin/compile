@@ -4,12 +4,10 @@ set -eo pipefail
 
 BUILDDIR=$1
 CACHEDIR=$2
-STACKCACHE=$CACHEDIR/stackcache
 BINDIR=$CACHEDIR/bin
 export PATH=$PATH:$BINDIR
 
 mkdir -p $HOME/.cabal
-mkdir -p $STACKCACHE
 mkdir -p $BINDIR
 
 pushd $CACHEDIR
@@ -22,11 +20,11 @@ mv stack*linux-x86_64/stack $BINDIR
 #apt-get install libgmp-dev
 echo "Stack setup completed"
 
-pushd $BUILDDIR
 echo "Build Haskell compiler started"
-stack setup
+stack setup --stack-setup-yaml $BINDIR/stack.yml
 echo "Build Haskell compiler completed"
 
+pushd $BINDIR
 echo "App build started"
 stack build
 echo "App build completed"
