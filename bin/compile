@@ -20,6 +20,7 @@ mv stack*linux-x86_64/stack $BINDIR
 echo "Stack setup completed"
 
 echo "Using stack.yml file"
+ls $BUILDDIR
 echo "======================================"
 cat $BUILDDIR/stack.yml
 echo "======================================"
