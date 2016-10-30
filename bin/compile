@@ -25,7 +25,7 @@ echo "======================================"
 cat $BUILDDIR/stack.yaml
 echo "======================================"
 
-popd $BUILDDIR
+pushd $BUILDDIR
 echo "Build Haskell compiler started"
 stack setup
 rm ~/.stack/programs/**/*.tar.bz2
